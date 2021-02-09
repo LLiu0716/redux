@@ -2,11 +2,11 @@ import { ADD_LIST, DEL_LIST, UPD_LIST } from './index'
 import { I_redux } from '../Type'
 
 const data = [
-  { age: 26, id: 5, name: '刘嘉玲' },
-  { age: 24, id: 4, name: '刘德华' },
-  { age: 21, id: 3, name: '关之琳' },
-  { age: 23, id: 2, name: '王祖贤' },
-  { age: 22, id: 1, name: '周星驰' }
+  { id: 5, name: '吃饭', dome: false },
+  { id: 4, name: '睡觉', dome: true },
+  { id: 3, name: '游戏', dome: false },
+  { id: 2, name: '唱歌', dome: true },
+  { id: 1, name: '跳舞', dome: false }
 ]
 
 /**
