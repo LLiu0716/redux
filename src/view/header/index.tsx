@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Content () {
+function Content ( props: any ) {
   return (
     <header className="header">
       <h1>todos</h1>
@@ -10,4 +10,6 @@ export default function Content () {
       />
     </header>
   )
-} 
+}
+
+export default Content

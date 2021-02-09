@@ -4,9 +4,11 @@ import './css/base.css'
 import './css/index.css'
 import App from './App'
 
+import store from './redux'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={ store } />
   </React.StrictMode>,
   document.getElementById( 'root' )
 )

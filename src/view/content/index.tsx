@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function Content () {
+function Content ( props: any ) {
+  console.log( ' props: any', props.store.getState() )
   return (
     <section className="main">
       <input
@@ -34,4 +35,6 @@ export default function Content () {
       </ul >
     </section >
   )
-} 
+}
+
+export default Content

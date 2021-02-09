@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Content () {
+function Content ( props: any ) {
   return (
     <footer className="footer">
       <span className="todo-count"><strong>maxTodo</strong>item left</span>
@@ -20,4 +20,6 @@ export default function Content () {
 				</button>
     </footer >
   )
-} 
+}
+
+export default Content
