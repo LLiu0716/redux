@@ -4,6 +4,7 @@ export interface Mobj {
   age?: number
   id?: number
   name?: string
+  dome?: boolean
 }
 
 export interface State {

@@ -1,4 +1,4 @@
-import { ADD_LIST, DEL_LIST, UPD_LIST } from './index'
+import { ADD_LIST, DEL_LIST, UPD_LIST, UPD_DOME } from './index'
 import { I_redux, Mobj } from '../Type'
 
 const data = [
@@ -26,9 +26,23 @@ export const list = ( state: Mobj[] = data, action: I_redux ): any[] => {
       const LIST_DEL = state.filter( v => v.id !== action.data?.id )
       return LIST_DEL
     case UPD_LIST:
-      // 修改
-      const LIST_UPD = [ ...state, action.data ]
+      // 修改数据
+      const LIST_UPD = [ ...state ]
+      LIST_UPD.forEach( v => {
+        if ( v.id === action.data?.id ) {
+          v.name = action.data?.name
+        }
+      } )
       return LIST_UPD
+    case UPD_DOME:
+      // 修改状态
+      const DOME_UPD = [ ...state ]
+      DOME_UPD.forEach( v => {
+        if ( v.id === action.data?.id ) {
+          v.dome = !v.dome
+        }
+      } )
+      return DOME_UPD
     default:
       return state
   }
