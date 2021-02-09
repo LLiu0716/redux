@@ -2,14 +2,28 @@ import React, { Component } from 'react'
 
 class Ul extends Component<any> {
   state = {
+    name: '',
     id: null
   }
 
-  DoubleClick ( id: number ) {
+  DoubleClick ( id: number, name: string ) {
     console.log( 'id', id )
     this.setState( {
+      name,
       id
     } )
+  }
+
+  checked ( id: number ) {
+    console.log( 'id', id )
+  }
+
+  dellet ( id: number ) {
+    console.log( 'id', id )
+  }
+
+  update ( e: any ) {
+    console.log( 'val', e.target.value )
   }
 
   render () {
@@ -23,20 +37,24 @@ class Ul extends Component<any> {
           // className={ v.dome ? 'completed' : '' }
           >
             <div className="view">
-              <input className="toggle" type="checkbox" checked={ v.dome } />
-              <label
-                onDoubleClick={ () => this.DoubleClick( v.id ) }
-              >
+              <input
+                className="toggle"
+                type="checkbox"
+                checked={ v.dome }
+                onChange={ () => this.checked( v.id ) }
+              />
+              <label onDoubleClick={ () => this.DoubleClick( v.id, v.name ) }>
                 { v.name }
               </label>
               <button
                 className="destroy"
-                onClick={ () => console.log( v.id ) }
-              ></button>
+                onClick={ () => this.dellet( v.id ) }
+              />
             </div>
             <input
-              onChange={ () => console.log( '777' ) }
-              className="edit" value={ v.name }
+              onChange={ ( e ) => this.update( e ) }
+              className="edit"
+              value={ this.state.name }
             />
           </li>
         ) )
