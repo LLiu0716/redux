@@ -7,6 +7,7 @@ function Content ( props: any ) {
       <input
         className="new-todo"
         placeholder="What needs to be done?"
+        autoFocus
       />
     </header>
   )
