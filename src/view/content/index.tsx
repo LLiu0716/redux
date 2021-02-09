@@ -1,7 +1,9 @@
 import React from 'react'
+import { Props } from '../../Type'
+
 import Ul from './Ul'
 
-function Content ( props: any ) {
+function Content ( props: Props ) {
   return (
     <section className="main">
       <input

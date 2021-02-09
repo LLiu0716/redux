@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-class Content extends Component<any> {
+import { Props } from '../../Type'
+
+class Content extends Component<Props> {
   state = {
     value: ''
   }

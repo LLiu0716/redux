@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-class Ul extends Component<any> {
+import { Props } from '../../Type'
+
+class Ul extends Component<Props> {
   state = {
     name: '',
     id: null

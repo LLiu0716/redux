@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Content ( props: any ) {
+import { Props } from '../../Type'
+
+function Content ( props: Props ) {
   return (
     <footer className="footer">
       <span className="todo-count"><strong>maxTodo</strong>item left</span>

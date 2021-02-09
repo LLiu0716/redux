@@ -1,3 +1,5 @@
+import { Store } from "redux";
+
 export interface Mobj {
   age?: number
   id?: number
@@ -9,8 +11,8 @@ export interface State {
 }
 
 export interface Props {
-  store: any
-  click: ( id: number ) => void
+  store: Store
+  click?: ( id: number ) => void
 }
 
 export interface OneProps {
