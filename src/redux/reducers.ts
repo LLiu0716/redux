@@ -1,5 +1,5 @@
 import { ADD_LIST, DEL_LIST, UPD_LIST } from './index'
-import { I_redux } from '../../../src/Type'
+import { I_redux } from '../Type'
 
 const data = [
   { age: 26, id: 5, name: '刘嘉玲' },
