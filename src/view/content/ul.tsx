@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { del_list, upd_dome, upd_list } from '../../redux/action'
 
 import { Props } from '../../Type'
 
@@ -18,13 +19,13 @@ class Ul extends Component<Props> {
 
   checked ( id: number ) {
     console.log( 'id', id )
-    this.props.store.dispatch( { type: 'UPD_DOME', data: { id } } )
+    this.props.store.dispatch( upd_dome( { id } ) )
     console.log( this.props.store.getState() )
   }
 
   dellet ( id: number ) {
     console.log( 'id', id )
-    this.props.store.dispatch( { type: 'DEL_LIST', data: { id } } )
+    this.props.store.dispatch( del_list( { id } ) )
     console.log( this.props.store.getState() )
   }
 
@@ -36,8 +37,6 @@ class Ul extends Component<Props> {
         name
       } )
     }
-    // this.props.store.dispatch( { type: 'DEL_LIST', data: { id } } )
-    // console.log( this.props.store.getState() )
   }
 
   // 提交方式 回车 或者是失去焦点
@@ -50,7 +49,7 @@ class Ul extends Component<Props> {
           id,
           name: this.state.name,
         }
-        this.props.store.dispatch( { type: 'UPD_LIST', data } )
+        this.props.store.dispatch( upd_list( data ) )
         console.log( this.props.store.getState() )
         this.setState( {
           id: null

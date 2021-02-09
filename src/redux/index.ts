@@ -1,10 +1,17 @@
 import { createStore } from 'redux'
 import { list, add_item } from './reducers'
 
-export const ADD_LIST: string = 'ADD_LIST'
-export const DEL_LIST: string = 'DEL_LIST'
-export const UPD_LIST: string = 'UPD_LIST'
-export const UPD_DOME: string = 'UPD_DOME'
+/** 新增 */
+export const ADD_LIST = 'ADD_LIST'
+
+/** 删除 */
+export const DEL_LIST = 'DEL_LIST'
+
+/** 修改数据 */
+export const UPD_LIST = 'UPD_LIST'
+
+/** 修改状态 */
+export const UPD_DOME = 'UPD_DOME'
 
 const store = createStore( list )
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { Props } from '../../Type'
 
+import { add_list } from '../../redux/action'
+
 class Content extends Component<Props> {
   state = {
     value: ''
@@ -28,7 +30,7 @@ class Content extends Component<Props> {
           name: this.state.value,
           dome: false
         }
-        this.props.store.dispatch( { type: 'ADD_LIST', data } )
+        this.props.store.dispatch( add_list( data ) )
         console.log( this.props.store.getState() )
         this.setState( {
           value: ''
