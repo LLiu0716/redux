@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { del_list, upd_dome, upd_list } from '../../redux/action'
 
-import { Props } from '../../Type'
+import { Mobj, Props } from '../../Type'
 
 class Ul extends Component<Props> {
   state = {
@@ -9,7 +9,7 @@ class Ul extends Component<Props> {
     id: null
   }
 
-  DoubleClick ( id: number, name: string ) {
+  DoubleClick ( id?: number, name?: string ) {
     console.log( 'id', id )
     this.setState( {
       name,
@@ -17,13 +17,13 @@ class Ul extends Component<Props> {
     } )
   }
 
-  checked ( id: number ) {
+  checked ( id?: number ) {
     console.log( 'id', id )
     this.props.store.dispatch( upd_dome( { id } ) )
     console.log( this.props.store.getState() )
   }
 
-  dellet ( id: number ) {
+  dellet ( id?: number ) {
     console.log( 'id', id )
     this.props.store.dispatch( del_list( { id } ) )
     console.log( this.props.store.getState() )
@@ -40,7 +40,7 @@ class Ul extends Component<Props> {
   }
 
   // 提交方式 回车 或者是失去焦点
-  set_value ( e: React.KeyboardEvent<HTMLInputElement>, id: number, val: string ) {
+  set_value ( e: React.KeyboardEvent<HTMLInputElement>, val: string, id?: number ) {
     // 如果不是回车 或者不是失焦事件就不做任何处理
     if ( e.code == 'Enter' || val ) {
       // 如果得到的 value 是空就不做处理
@@ -59,7 +59,7 @@ class Ul extends Component<Props> {
   }
 
   render () {
-    const list: any[] = this.props.store.getState()
+    const list: Mobj[] = this.props.store.getState()
     return (
       <ul className="todo-list">
         {
@@ -67,7 +67,7 @@ class Ul extends Component<Props> {
             <li
               key={ v.id }
               className={ `
-                ${ this.state.id == v.id ? 'editing' : '' }
+                ${ this.state.id === v.id ? 'editing' : '' }
                 ${ v.dome ? 'completed' : '' } ` }
             // className={ v.dome ? 'completed' : '' }
             >
@@ -89,8 +89,8 @@ class Ul extends Component<Props> {
               <input
                 className="edit"
                 onChange={ e => this.update( e ) }
-                onKeyUp={ e => this.set_value( e, v.id, '' ) }
-                onBlur={ ( e: any ) => this.set_value( e, v.id, 'blur' ) }
+                onKeyUp={ e => this.set_value( e, '', v.id ) }
+                onBlur={ ( e: any ) => this.set_value( e, 'blur', v.id ) }
                 value={ this.state.name }
               />
             </li>
