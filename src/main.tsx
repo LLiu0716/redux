@@ -6,9 +6,17 @@ import App from './App'
 
 import store from './redux'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App store={ store } />
-  </React.StrictMode>,
-  document.getElementById( 'root' )
-)
+render()
+
+function render () {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App store={ store } />
+    </React.StrictMode>,
+    document.getElementById( 'root' )
+  )
+}
+
+store.subscribe( () => {
+  render()
+} )

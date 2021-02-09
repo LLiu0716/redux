@@ -30,39 +30,38 @@ class Ul extends Component<any> {
     const list: any[] = this.props.store.getState()
     return (
       <ul className="todo-list">
-        { list.map( v => (
-          <li
-            key={ v.id }
-            className={ `${ this.state.id == v.id ? 'editing' : '' } ${ v.dome ? 'completed' : '' }` }
-          // className={ v.dome ? 'completed' : '' }
-          >
-            <div className="view">
+        {
+          list.map( v => (
+            <li
+              key={ v.id }
+              className={ `
+                ${ this.state.id == v.id ? 'editing' : '' }
+                ${ v.dome ? 'completed' : '' } ` }
+            // className={ v.dome ? 'completed' : '' }
+            >
+              <div className="view">
+                <input
+                  className="toggle"
+                  type="checkbox"
+                  checked={ v.dome }
+                  onChange={ () => this.checked( v.id ) }
+                />
+                <label onDoubleClick={ () => this.DoubleClick( v.id, v.name ) }>
+                  { v.name }
+                </label>
+                <button
+                  className="destroy"
+                  onClick={ () => this.dellet( v.id ) }
+                />
+              </div>
               <input
-                className="toggle"
-                type="checkbox"
-                checked={ v.dome }
-                onChange={ () => this.checked( v.id ) }
+                onChange={ e => this.update( e ) }
+                className="edit"
+                value={ this.state.name }
               />
-              <label onDoubleClick={ () => this.DoubleClick( v.id, v.name ) }>
-                { v.name }
-              </label>
-              <button
-                className="destroy"
-                onClick={ () => this.dellet( v.id ) }
-              />
-            </div>
-            <input
-              onChange={ ( e ) => this.update( e ) }
-              className="edit"
-              value={ this.state.name }
-            />
-          </li>
-        ) )
+            </li>
+          ) )
         }
-        {/* <li
-          className="completed editing"
-        >
-        </li> */}
       </ul >
     )
   }
