@@ -1,27 +1,26 @@
-import { AnyAction } from 'redux'
 import { Mobj } from '../Type'
 import { ADD_LIST, UPD_LIST, DEL_LIST, UPD_DOME, GET_LIST } from './index'
 
 const URL = 'http://localhost:8080'
 
 // 同步 action
-const add_list = ( data: Mobj ): AnyAction => {
+const add_list = ( data: Mobj ) => {
   return { type: ADD_LIST, data }
 }
 
-const del_list = ( data: Mobj ): AnyAction => {
+const del_list = ( data: Mobj ) => {
   return { type: DEL_LIST, data }
 }
 
-const upd_list = ( data?: Mobj ): AnyAction => {
+const upd_list = ( data?: Mobj ) => {
   return { type: UPD_LIST, data }
 }
 
-const upd_dome = ( data?: Mobj ): AnyAction => {
+const upd_dome = ( data?: Mobj ) => {
   return { type: UPD_DOME, data }
 }
 
-const get_list = ( mseeage: Mobj[] ): AnyAction => {
+const get_list = ( mseeage: Mobj[] ) => {
   return { type: GET_LIST, mseeage }
 }
 
@@ -29,7 +28,7 @@ const get_list = ( mseeage: Mobj[] ): AnyAction => {
 /**
  * 获取数据异步函数
  */
-export const get_list_async = (): AnyAction => {
+export const get_list_async = () => {
   let res: any = ( dispatch: any ) => {
     fetch( `${ URL }/data` )
       .then( res => res.json() )
@@ -45,7 +44,7 @@ export const get_list_async = (): AnyAction => {
  * 新增数据异步函数
  * @param data 新增数据对象
  */
-export const add_list_async = ( data: Mobj ): AnyAction => {
+export const add_list_async = ( data: Mobj ) => {
   let res: any = ( dispatch: any ) => {
     fetch( `${ URL }/data`, {
       method: 'POST',
@@ -67,7 +66,7 @@ export const add_list_async = ( data: Mobj ): AnyAction => {
  * 删除数据异步函数
  * @param id 要删除的数据的 ID
  */
-export const del_list_async = ( id?: number ): AnyAction => {
+export const del_list_async = ( id?: number ) => {
   let res: any = ( dispatch: any ) => {
     fetch( `${ URL }/data/${ id }`, { method: 'DELETE' } )
       .then( res => res.json() )
@@ -86,7 +85,7 @@ export const del_list_async = ( id?: number ): AnyAction => {
  * @param obj 要修改状态的数据对象
  * @param dome false 修改名称 , true 修改状态
  */
-export const upd_async = ( obj?: Mobj, dome?: boolean ): AnyAction => {
+export const upd_async = ( obj?: Mobj, dome?: boolean ) => {
   console.log( 'obj', obj )
   // 我草 , 什么鬼函数 , 居然没有只修改某一项的请求方式
   let data: Mobj = {}
