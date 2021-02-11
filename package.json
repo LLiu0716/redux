@@ -1,27 +1,28 @@
 {
-  "name": "redux",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build"
-  },
-  "dependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
-  },
-  "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-redux": "^7.1.16",
-    "@types/react-router-dom": "^5.1.7",
-    "@types/redux": "^3.6.0",
-    "less": "^4.1.1",
-    "typescript": "^4.1.2",
-    "vite": "^1.0.0-rc.13",
-    "vite-plugin-react": "^4.0.0"
-  }
+	"name": "redux",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"json": "json-server index.json --port 8080",
+		"build": "tsc && vite build"
+	},
+	"dependencies": {
+		"react": "^17.0.0",
+		"react-dom": "^17.0.0",
+		"react-redux": "^7.2.2",
+		"react-router-dom": "^5.2.0",
+		"redux": "^4.0.5",
+		"redux-thunk": "^2.3.0"
+	},
+	"devDependencies": {
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"@types/react-redux": "^7.1.16",
+		"@types/react-router-dom": "^5.1.7",
+		"@types/redux": "^3.6.0",
+		"less": "^4.1.1",
+		"typescript": "^4.1.2",
+		"vite": "^1.0.0-rc.13",
+		"vite-plugin-react": "^4.0.0"
+	}
 }
