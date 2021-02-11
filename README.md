@@ -13,7 +13,7 @@ npm i
 mpm run dev
 
 // 启动服务器 , 如果需要后端数据
-npm run json
+npm run serve
 ```
 
 ## `deom`完成 , 结束感受
