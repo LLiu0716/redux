@@ -5,12 +5,12 @@ import { Mobj, Props } from '../../Type'
 
 class Ul extends Component<Props> {
   state = {
+    show: false,
     name: '',
     id: null
   }
 
   DoubleClick ( id?: number, name?: string ) {
-    console.log( 'id', id )
     this.setState( {
       name,
       id
@@ -18,25 +18,21 @@ class Ul extends Component<Props> {
   }
 
   checked ( id?: number ) {
-    console.log( 'id', id )
     this.props.store.dispatch( upd_dome( { id } ) )
     console.log( this.props.store.getState() )
   }
 
   dellet ( id?: number ) {
-    console.log( 'id', id )
     this.props.store.dispatch( del_list( { id } ) )
     console.log( this.props.store.getState() )
   }
 
   update ( e: React.ChangeEvent<HTMLInputElement> ) {
-    console.log( 'val', e.target.value )
     const name = e.target.value.trim()
-    if ( name ) {
-      this.setState( {
-        name
-      } )
-    }
+    this.setState( {
+      show: true,
+      name
+    } )
   }
 
   // 提交方式 回车 或者是失去焦点
@@ -44,18 +40,30 @@ class Ul extends Component<Props> {
     // 如果不是回车 或者不是失焦事件就不做任何处理
     if ( e.code == 'Enter' || val ) {
       // 如果得到的 value 是空就不做处理
-      if ( this.state.name ) {
-        const data = {
-          id,
-          name: this.state.name,
+      if ( this.state.show ) {
+        if ( this.state.name.trim() ) {
+          const data = {
+            id,
+            name: this.state.name,
+          }
+          this.props.store.dispatch( upd_list( data ) )
+          console.log( this.props.store.getState() )
+        } else {
+          this.dellet( id )
         }
-        this.props.store.dispatch( upd_list( data ) )
-        console.log( this.props.store.getState() )
-        this.setState( {
-          id: null
-        } )
       }
+      this.setState( {
+        name: '',
+        id: null,
+        show: false
+      } )
     }
+  }
+
+  class_name ( v: Mobj ) {
+    return (
+      `${ this.state.id === v.id ? 'editing ' : '' }${ v.dome ? 'completed' : '' }`.trim()
+    )
   }
 
   render () {
@@ -66,9 +74,7 @@ class Ul extends Component<Props> {
           list.map( v => (
             <li
               key={ v.id }
-              className={ `
-                ${ this.state.id === v.id ? 'editing' : '' }
-                ${ v.dome ? 'completed' : '' } ` }
+              className={ this.class_name( v ) }
             // className={ v.dome ? 'completed' : '' }
             >
               <div className="view">
@@ -88,10 +94,11 @@ class Ul extends Component<Props> {
               </div>
               <input
                 className="edit"
+                value={ this.state.name }
+                autoFocus={ this.state.id === v.id }
                 onChange={ e => this.update( e ) }
                 onKeyUp={ e => this.set_value( e, '', v.id ) }
                 onBlur={ ( e: any ) => this.set_value( e, 'blur', v.id ) }
-                value={ this.state.name }
               />
             </li>
           ) )
