@@ -1,4 +1,6 @@
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
+import thunk from 'redux-thunk'
+
 import { list, add_item } from './reducers'
 
 /** 新增 */
@@ -13,6 +15,6 @@ export const UPD_LIST = 'UPD_LIST'
 /** 修改状态 */
 export const UPD_DOME = 'UPD_DOME'
 
-const store = createStore( list )
+const store = createStore( list, applyMiddleware( thunk ) )
 
 export default store
