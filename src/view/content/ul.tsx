@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { del_list, upd_dome, upd_list, get_list_async, get_list } from '../../redux/action'
+import { get_list_async, del_list_async, upd_async } from '../../redux/action'
 
 import { Mobj, Props } from '../../Type'
 
@@ -21,13 +21,13 @@ class Ul extends Component<Props> {
     } )
   }
 
-  checked ( id?: number ) {
-    this.props.store.dispatch( upd_dome( { id } ) )
+  checked ( obj?: Mobj ) {
+    this.props.store.dispatch( upd_async( obj, true ) )
     console.log( this.props.store.getState() )
   }
 
   dellet ( id?: number ) {
-    this.props.store.dispatch( del_list( { id } ) )
+    this.props.store.dispatch( del_list_async( id ) )
     console.log( this.props.store.getState() )
   }
 
@@ -50,7 +50,7 @@ class Ul extends Component<Props> {
             id,
             name: this.state.name,
           }
-          this.props.store.dispatch( upd_list( data ) )
+          this.props.store.dispatch( upd_async( data, false ) )
           console.log( this.props.store.getState() )
         } else {
           this.dellet( id )
@@ -72,7 +72,6 @@ class Ul extends Component<Props> {
 
   render () {
     const list: Mobj[] = this.props.store.getState() || []
-    console.log( 'list =>', list )
     return (
       <ul className="todo-list">
         {list.length ?
@@ -87,7 +86,7 @@ class Ul extends Component<Props> {
                   className="toggle"
                   type="checkbox"
                   checked={ v.dome }
-                  onChange={ () => this.checked( v.id ) }
+                  onChange={ () => this.checked( v ) }
                 />
                 <label onDoubleClick={ () => this.DoubleClick( v.id, v.name ) }>
                   { v.name }

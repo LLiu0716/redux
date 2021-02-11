@@ -47,7 +47,6 @@ export const list = ( state: Mobj[] = [], action: I_redux ): any[] => {
       // 获取数据
       let LIST_GET = state
       LIST_GET = action.mseeage as Mobj[]
-      console.log( 'LIST_GET', LIST_GET )
       return LIST_GET
     // return action.data as any
     default:
