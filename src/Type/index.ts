@@ -24,4 +24,5 @@ export interface I_redux {
   type: string
   data?: Mobj
   name?: string
+  mseeage?: Mobj[]
 }

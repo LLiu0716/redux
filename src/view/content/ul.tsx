@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { del_list, upd_dome, upd_list } from '../../redux/action'
+import { del_list, upd_dome, upd_list, get_list_async, get_list } from '../../redux/action'
 
 import { Mobj, Props } from '../../Type'
 
@@ -8,6 +8,10 @@ class Ul extends Component<Props> {
     show: false,
     name: '',
     id: null
+  }
+
+  componentDidMount () {
+    this.props.store.dispatch( get_list_async() )
   }
 
   DoubleClick ( id?: number, name?: string ) {
@@ -67,10 +71,11 @@ class Ul extends Component<Props> {
   }
 
   render () {
-    const list: Mobj[] = this.props.store.getState()
+    const list: Mobj[] = this.props.store.getState() || []
+    console.log( 'list =>', list )
     return (
       <ul className="todo-list">
-        {
+        {list.length ?
           list.map( v => (
             <li
               key={ v.id }
@@ -101,7 +106,8 @@ class Ul extends Component<Props> {
                 onBlur={ ( e: any ) => this.set_value( e, 'blur', v.id ) }
               />
             </li>
-          ) )
+          ) ) :
+          <li></li>
         }
       </ul >
     )

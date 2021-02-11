@@ -15,6 +15,9 @@ export const UPD_LIST = 'UPD_LIST'
 /** 修改状态 */
 export const UPD_DOME = 'UPD_DOME'
 
+/** 获取数据 */
+export const GET_LIST = 'GET_LIST'
+
 const store = createStore( list, applyMiddleware( thunk ) )
 
 export default store

@@ -1,21 +1,21 @@
-import { ADD_LIST, DEL_LIST, UPD_LIST, UPD_DOME } from './index'
+import { ADD_LIST, DEL_LIST, UPD_LIST, UPD_DOME, GET_LIST } from './index'
 import { I_redux, Mobj } from '../Type'
 
-const data = [
-  { id: 5, name: '吃饭', dome: false },
-  { id: 4, name: '睡觉', dome: true },
-  { id: 3, name: '游戏', dome: false },
-  { id: 2, name: '唱歌', dome: true },
-  { id: 1, name: '跳舞', dome: false }
-]
+// const data = [
+//   { id: 5, name: '吃饭', dome: false },
+//   { id: 4, name: '睡觉', dome: true },
+//   { id: 3, name: '游戏', dome: false },
+//   { id: 2, name: '唱歌', dome: true },
+//   { id: 1, name: '跳舞', dome: false }
+// ]
+// export const list = ( state: Mobj[] = data, action: I_redux ): any[] => {
 
 /**
  * list 列表数据
  * @param state 维护的数据
  * @param action 必传对象里的 type
  */
-export const list = ( state: Mobj[] = data, action: I_redux ): any[] => {
-  console.log( 'action.data', action.data )
+export const list = ( state: Mobj[] = [], action: I_redux ): any[] => {
   switch ( action.type ) {
     case ADD_LIST:
       // 新增
@@ -43,6 +43,13 @@ export const list = ( state: Mobj[] = data, action: I_redux ): any[] => {
         }
       } )
       return DOME_UPD
+    case GET_LIST:
+      // 获取数据
+      let LIST_GET = state
+      LIST_GET = action.mseeage as Mobj[]
+      console.log( 'LIST_GET', LIST_GET )
+      return LIST_GET
+    // return action.data as any
     default:
       return state
   }
