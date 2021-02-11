@@ -4,19 +4,17 @@ import './css/base.css'
 import './css/index.css'
 import App from './App'
 
+import { Provider } from 'react-redux'
+
 import store from './redux'
 
-render()
+export const Store = store
 
-function render () {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App store={ store } />
-    </React.StrictMode>,
-    document.getElementById( 'root' )
-  )
-}
-
-store.subscribe( () => {
-  render()
-} )
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={ store }>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById( 'root' )
+)

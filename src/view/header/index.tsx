@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 import { Props } from '../../Type'
 
+import { Store } from '../../main'
+
 import { add_list_async } from '../../redux/action'
 
-class Content extends Component<Props> {
+class Content extends Component<any> {
   state = {
     value: ''
   }
@@ -30,8 +32,8 @@ class Content extends Component<Props> {
           name: this.state.value,
           dome: false
         }
-        this.props.store.dispatch( add_list_async( data ) )
-        console.log( this.props.store.getState() )
+        Store.dispatch( add_list_async( data ) )
+        console.log( Store.getState() )
         this.setState( {
           value: ''
         } )

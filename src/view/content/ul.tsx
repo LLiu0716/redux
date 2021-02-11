@@ -3,7 +3,11 @@ import { get_list_async, del_list_async, upd_async } from '../../redux/action'
 
 import { Mobj, Props } from '../../Type'
 
-class Ul extends Component<Props> {
+import { Store } from '../../main'
+
+import { connect } from 'react-redux'
+
+class Ul extends Component<any>{
   state = {
     show: false,
     name: '',
@@ -11,7 +15,13 @@ class Ul extends Component<Props> {
   }
 
   componentDidMount () {
-    this.props.store.dispatch( get_list_async() )
+    /**
+     * 2种写法都可以
+     * 前者更简洁 , 特别是在jsx中使用 , 问题是没有代码提示
+     * 后者更方便 , 特别是在tsx中使用 , 好处是有代码提示
+     */
+    // this.props.get_list_async()
+    Store.dispatch( get_list_async() )
   }
 
   DoubleClick ( id?: number, name?: string ) {
@@ -22,13 +32,13 @@ class Ul extends Component<Props> {
   }
 
   checked ( obj?: Mobj ) {
-    this.props.store.dispatch( upd_async( obj, true ) )
-    console.log( this.props.store.getState() )
+    this.props.upd_async( obj, true )
+    // console.log( Store.getState() )
   }
 
   dellet ( id?: number ) {
-    this.props.store.dispatch( del_list_async( id ) )
-    console.log( this.props.store.getState() )
+    this.props.del_list_async( id )
+    // console.log( Store.getState() )
   }
 
   update ( e: React.ChangeEvent<HTMLInputElement> ) {
@@ -50,8 +60,7 @@ class Ul extends Component<Props> {
             id,
             name: this.state.name,
           }
-          this.props.store.dispatch( upd_async( data, false ) )
-          console.log( this.props.store.getState() )
+          this.props.upd_async( data, false )
         } else {
           this.dellet( id )
         }
@@ -71,7 +80,7 @@ class Ul extends Component<Props> {
   }
 
   render () {
-    const list: Mobj[] = this.props.store.getState() || []
+    const list: Mobj[] = this.props.list || []
     return (
       <ul className="todo-list">
         {list.length ?
@@ -113,4 +122,7 @@ class Ul extends Component<Props> {
   }
 }
 
-export default Ul
+export default connect(
+  state => ( { list: state } ),
+  { get_list_async, del_list_async, upd_async }
+)( Ul ) 

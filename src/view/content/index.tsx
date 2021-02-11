@@ -1,9 +1,9 @@
 import React from 'react'
 import { Props } from '../../Type'
 
-import Ul from './Ul'
+import Ul from './ul'
 
-function Content ( props: Props ) {
+function Content () {
   return (
     <section className="main">
       <input
@@ -12,7 +12,7 @@ function Content ( props: Props ) {
         type="checkbox"
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
-      <Ul store={ props.store } />
+      <Ul />
     </section >
   )
 }

@@ -6,13 +6,13 @@ import Header from './view/header'
 import Content from './view/content'
 import Footer from './view/footer'
 
-function App ( props: Props ) {
+function App () {
   // const [ count, setCount ] = useState( 0 )
   return (
     <section className="todoapp">
-      <Header store={ props.store } />
-      <Content store={ props.store } />
-      <Footer store={ props.store } />
+      <Header />
+      <Content />
+      <Footer />
     </section >
   )
 }
