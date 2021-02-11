@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
-		"json": "json-server index.json --port 8080",
+		"serve": "json-server index.json --port 8080",
 		"build": "tsc && vite build"
 	},
 	"dependencies": {
